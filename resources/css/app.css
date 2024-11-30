@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #3d3d3d;
+}
+
+/* Table style */
+.table-fixed {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 18px;
+  text-align: left;
+}
+
+.table-fixed th,
+.table-fixed td {
+  padding: 12px 15px;
+}
+
+.table-fixed th {
+  font-weight: bold;
+}
+
+.table-pagination {
+  text-align: center;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.table-pagination a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.table-pagination a:hover {
+  text-decoration: underline;
+}
+
+.table-pagination span {
+  font-weight: bold;
+}
