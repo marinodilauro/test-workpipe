@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -52,9 +53,23 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+
+
+        // dd($user);
+
+        // Validate
+        $val_data = $request->validated();
+
+        // dd($val_data);
+
+        // Update
+        //dd($request->all());
+        $user->update($val_data);
+
+        // Redirect
+        return to_route('users.index', $user)->with('message', "User $user->first_name $user->last_name updated succesfully!");
     }
 
     /**
