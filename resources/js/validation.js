@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     editForm: document.getElementById('editForm'),
   };
 
-  // Funzione per validare i campi del form
+  // Form fileds validation
   function validateForm(form) {
     const firstName = form.querySelector('[name="first_name"]');
     const lastName = form.querySelector('[name="last_name"]');
@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateOfBirth = form.querySelector('[name="date_of_birth"]');
     let isValid = true;
 
-    // Funzione di validazione generica
+    // Generic validation function
     function validateField(field, rules) {
       const value = field.value.trim();
       let error = '';
 
-      // Regole di validazione
+      // Validation rules
       if (rules.required && !value) {
         error = 'This field is required.';
       } else if (rules.min && value.length < rules.min) {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         error = 'Please enter a valid date of birth.';
       }
 
-      // Mostra o nasconde l'errore e aggiunge o rimuove il bordo rosso
+      // Add CSS error classes
       const errorElement = field.nextElementSibling;
       if (error) {
         errorElement.textContent = error;
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Validazioni specifiche per i campi
+    // Specific fileds validation
     validateField(firstName, { required: true, min: 3, max: 150 });
     validateField(lastName, { required: true, min: 3, max: 150 });
     validateField(email, {
@@ -62,12 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return isValid;
   }
 
-  // Funzione di validazione della data
+  // Date filed validation
   function validateDate(dateString) {
     const date = new Date(dateString);
     const today = new Date();
-    if (isNaN(date)) return false; // Non è una data valida
-    if (date >= today) return false; // La data deve essere nel passato
+    if (isNaN(date)) return false; // Not a valid format
     const minDate = new Date("1900-01-01");
     if (date < minDate) return false; // La data non può essere prima del 1900
     return true;
