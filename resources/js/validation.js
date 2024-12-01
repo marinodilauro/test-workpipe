@@ -68,11 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const today = new Date();
     if (isNaN(date)) return false; // Not a valid format
     const minDate = new Date("1900-01-01");
-    if (date < minDate) return false; // La data non può essere prima del 1900
+    if (date < minDate) return false; // Not before 1900
     return true;
   }
 
-  // Gestore di invio del form
+  // Handle forum send
   function handleFormSubmit(event) {
     const form = event.target;
     if (!validateForm(form)) {
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Aggiungi gli ascoltatori agli eventi submit
+  // Add submit event listener
   if (forms.createForm) {
     forms.createForm.addEventListener('submit', handleFormSubmit);
   }
