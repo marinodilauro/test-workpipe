@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -29,9 +30,24 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        // dd($request);
+
+        // Validate
+        $val_data = $request->validated();
+
+        // Generate random password and hashing
+        $randomPassword = Str::random(10);
+        $val_data['password'] = bcrypt($randomPassword);
+
+        // Create
+
+        //dd($request->all());
+        $user = User::create($val_data);
+
+        // Redirect
+        return to_route('users.index', $user)->with('message', "User $user->first_name $user->last_name created succesfully!");
     }
 
     /**

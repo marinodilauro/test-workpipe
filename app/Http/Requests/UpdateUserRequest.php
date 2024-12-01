@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -24,7 +22,6 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-
             'first_name' => 'required|min:3|max:150',
             'last_name' => 'required|min:3|max:150',
             'email' => [

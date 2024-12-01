@@ -28,15 +28,51 @@
       <main>
         <div class="table-header flex justify-center items-center mb-10">
           <h1 class="text-2xl font-bold me-auto">Users table</h1>
-          <button type="button" class="action bg-sky-500 hover:bg-sky-600 p-2 rounded-md">
-            <a class="text-decoration-none text-white flex items-center" href="" title="View">
-              {{-- Icon --}}
-              <span class="material-symbols-rounded">
-                add
-              </span>
-              Add user
-            </a>
+          <button id="addUserBtn" type="button"
+            class="action flex items-center bg-sky-500 hover:bg-sky-600 text-white p-2 rounded-md">
+            {{-- Icon --}}
+            <span class="material-symbols-rounded">
+              add
+            </span>
+            Add user
           </button>
+        </div>
+
+        <!-- Add User Off-Canvas -->
+        <div id="addUserOffCanvas"
+          class="fixed z-10 inset-y-0 right-0 w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold mb-4">Add New User</h2>
+            <form id="addUserForm" action="{{ route('users.store') }}" method="POST">
+              @csrf
+              <div class="flex flex-col items-start mb-4">
+                <label for="createFirstName" class="mb-2 text-sm font-bold text-gray-700">First
+                  Name</label>
+                <input type="text" id="firstName" name="first_name"
+                  class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+              </div>
+              <div class="flex flex-col items-start mb-4">
+                <label for="createLastName" class="mb-2 text-sm font-bold text-gray-700">Last Name</label>
+                <input type="text" id="createLastName" name="last_name"
+                  class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+              </div>
+              <div class="flex flex-col items-start mb-4">
+                <label for="createEmail" class="mb-2 text-sm font-bold text-gray-700">Email</label>
+                <input type="email" id="createEmail" name="email"
+                  class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+              </div>
+              <div class="flex justify-end">
+                <button type="button" id="closeOffCanvasBtn"
+                  class="mr-2 px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
+                  Cancel
+                </button>
+                <button type="submit"
+                  class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
 
         {{-- Users table --}}
@@ -139,8 +175,7 @@
                       <div class="flex flex-col items-start mb-4">
                         <label for="editFirstName" class="mb-2 text-sm font-bold text-gray-700">First
                           Name</label>
-                        <input type="text" id="editFirstName" @error('first_name') is-invalid @enderror
-                          name="first_name"
+                        <input type="text" id="editFirstName" name="first_name"
                           class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
                       </div>
                       <div class="flex flex-col items-start mb-4">
@@ -171,8 +206,8 @@
     </div>
 
     {{-- Delete User Modal --}}
-    <div id="deleteUserModal" data-modal class="relative z-10 hidden" aria-labelledby="deleteUserModal" role="dialog"
-      aria-modal="true">
+    <div id="deleteUserModal" data-modal class="relative z-10 hidden" aria-labelledby="deleteUserModal"
+      role="dialog" aria-modal="true">
       <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
       <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -215,8 +250,7 @@
 
     {{-- JavaScript for Modal Interactions --}}
     @vite('resources/js/modal.js')
-
-    {{-- <script src="{{ asset('js/modal.js') }}"></script> --}}
+    @vite('resources/js/offcanvas.js')
 
   </body>
 
