@@ -64,7 +64,7 @@ class UserController extends Controller
 
         // dd($val_data);
 
-        // Update
+        // Update user
         //dd($request->all());
         $user->update($val_data);
 
@@ -77,6 +77,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        // Delete user
+        $user->delete();
+
+        // Redirect
+        return to_route('users.index', $user)->with('message', "User $user->first_name $user->last_name deleted!");
     }
 }

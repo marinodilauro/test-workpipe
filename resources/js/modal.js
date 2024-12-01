@@ -3,9 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Trova tutti i bottoni che aprono modali
     const openModalButtons = document.querySelectorAll('[data-modal-trigger]');
 
-    // Trova tutte le modali
-    const modals = document.querySelectorAll('[data-modal]');
-
     // Trova tutti i bottoni di chiusura delle modali
     const closeModalButtons = document.querySelectorAll('[data-modal-close]');
 
@@ -76,12 +73,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
           // Imposta l'action del form con l'ID utente corretto
           editForm.action = `/users/${userId}`;
+          console.log(editForm);
 
         } else {
           const deleteModalTitle = document.getElementById('deleteUserModalTitle');
           if (deleteModalTitle) {
             deleteModalTitle.textContent = `Delete User: ${userFirstName} ${userLastName}`;
           }
+          // Imposta l'action del form con l'ID utente corretto
+          deleteForm.action = `/users/${userId}`;
+          console.log(deleteForm);
         }
       });
     });
