@@ -29,6 +29,11 @@ class StoreUserRequest extends FormRequest
                 'min:5',
                 'max:150',
             ],
+            'date_of_birth' => [
+                'required',
+                'date',
+                'after_or_equal:1900-01-01',
+            ]
         ];
     }
 }

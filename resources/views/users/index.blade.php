@@ -49,17 +49,33 @@
                 <label for="createFirstName" class="mb-2 text-sm font-bold text-gray-700">First
                   Name</label>
                 <input type="text" id="firstName" name="first_name"
-                  class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                  class="@error('first_name') border border-red-500 @enderror w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                  value="{{ old('first_name') }}">
+                <p class="text-red-500 text-sm hidden"></p>
               </div>
               <div class="flex flex-col items-start mb-4">
                 <label for="createLastName" class="mb-2 text-sm font-bold text-gray-700">Last Name</label>
                 <input type="text" id="createLastName" name="last_name"
-                  class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                  class="@error('last_name') border border-red-500 @enderror w-full px-3 py-2 leading-tight
+                  text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                  value="{{ old('last_name') }}">
+                <p class="text-red-500 text-sm hidden"></p>
               </div>
               <div class="flex flex-col items-start mb-4">
                 <label for="createEmail" class="mb-2 text-sm font-bold text-gray-700">Email</label>
-                <input type="email" id="createEmail" name="email"
-                  class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                <input type="text" id="createEmail" name="email"
+                  class="@error('email') border border-red-500 @enderror w-full px-3 py-2 leading-tight
+                  text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                  value="{{ old('email') }}">
+                <p class="text-red-500 text-sm hidden"></p>
+              </div>
+              <div class="flex flex-col items-start mb-4">
+                <label for="createDOB" class="mb-2 text-sm font-bold text-gray-700">Date of birth</label>
+                <input type="date" id="createDOB" name="date_of_birth"
+                  class="@error('date_of_birth') border border-red-500 @enderror w-full px-3 py-2 leading-tight
+                  text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                  value="{{ old('date_of_birth') }}">
+                <p class="text-red-500 text-sm hidden"></p>
               </div>
               <div class="flex justify-end">
                 <button type="button" id="closeOffCanvasBtn"
@@ -108,7 +124,7 @@
                     class="action flex items-center border-2 border-sky-500 text-sky-500 hover:bg-sky-500 hover:text-white p-3 rounded-md me-1"
                     data-modal-trigger="editUserModal" data-user-id="{{ $user->id }}"
                     data-user-first-name="{{ $user->first_name }}" data-user-last-name="{{ $user->last_name }}"
-                    data-user-email="{{ $user->email }}">
+                    data-user-email="{{ $user->email }}" data-user-dob="{{ $user->date_of_birth }}">
                     {{-- Icon --}}
                     <span class="material-symbols-rounded">
                       edit_square
@@ -176,17 +192,27 @@
                         <label for="editFirstName" class="mb-2 text-sm font-bold text-gray-700">First
                           Name</label>
                         <input type="text" id="editFirstName" name="first_name"
-                          class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                          class="@error('first_name') border border-red-500 @enderror w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <p class="text-red-500 text-sm hidden"></p>
                       </div>
                       <div class="flex flex-col items-start mb-4">
                         <label for="editLastName" class="mb-2 text-sm font-bold text-gray-700">Last Name</label>
                         <input type="text" id="editLastName" name="last_name"
-                          class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                          class="@error('last_name') border border-red-500 @enderror w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <p class="text-red-500 text-sm hidden"></p>
                       </div>
                       <div class="flex flex-col items-start mb-4">
                         <label for="editEmail" class="mb-2 text-sm font-bold text-gray-700">Email</label>
-                        <input type="email" id="editEmail" name="email"
-                          class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <input type="text" id="editEmail" name="email"
+                          class="@error('email') border border-red-500 @enderror w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <p class="text-red-500 text-sm hidden"></p>
+                      </div>
+                      <div class="flex flex-col items-start mb-4">
+                        <label for="editDOB" class="mb-2 text-sm font-bold text-gray-700">Date of birth</label>
+                        <input type="date" id="editDOB" name="date_of_birth"
+                          class="@error('date_of_birth') border border-red-500 @enderror w-full px-3 py-2 leading-tight
+                  text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <p class="text-red-500 text-sm hidden"></p>
                       </div>
                     </div>
                   </div>
@@ -251,6 +277,7 @@
     {{-- JavaScript for Modal Interactions --}}
     @vite('resources/js/modal.js')
     @vite('resources/js/offcanvas.js')
+    @vite('resources/js/validation.js')
 
   </body>
 

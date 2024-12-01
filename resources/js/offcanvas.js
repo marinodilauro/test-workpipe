@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const addUserBtn = document.getElementById('addUserBtn');
   const addUserOffCanvas = document.getElementById('addUserOffCanvas');
   const closeOffCanvasBtn = document.getElementById('closeOffCanvasBtn');
+  const addUserForm = document.getElementById('addUserForm');
 
   function openOffCanvas() {
     addUserOffCanvas.classList.remove('translate-x-full');
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
     openOffCanvas();
   });
+
   closeOffCanvasBtn.addEventListener('click', closeOffCanvas);
 
   // Close off-canvas when clicking outside
@@ -24,3 +26,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
